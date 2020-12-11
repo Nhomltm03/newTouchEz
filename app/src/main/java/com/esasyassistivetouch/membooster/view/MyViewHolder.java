@@ -2,7 +2,10 @@ package com.esasyassistivetouch.membooster.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Handler;
 import android.view.WindowManager;
+
+import androidx.core.view.ViewCompat;
 
 import com.esasyassistivetouch.membooster.feature.MultiTaskMainView;
 
@@ -13,7 +16,7 @@ public class MyViewHolder {
     private static WindowManager mWindowManager;
 
 
-    public MyViewHolder(Context context){
+    public MyViewHolder(Context context) {
         Context applicationContext = context.getApplicationContext();
         mEasyTouchView = new EasyTouchView(applicationContext, null);
         multiTaskMainView = new MultiTaskMainView(applicationContext, null);
@@ -21,7 +24,7 @@ public class MyViewHolder {
         mWindowManager = WindowManagerInstance.newInstance();
     }
 
-    public static void showEasyTouchView(){
+    public static void showEasyTouchView() {
         if (!EasyTouchView.isAlive) {
             WindowManager.LayoutParams layoutParams = mEasyTouchView.getWindowManagerLayoutParams();
             EasyTouchView.isAlive = true;
@@ -29,23 +32,44 @@ public class MyViewHolder {
         }
     }
 
-    public static void hideEasyTouchView(){
+    public static void hideEasyTouchView() {
         if (EasyTouchView.isAlive) {
             EasyTouchView.isAlive = false;
             mWindowManager.removeView(mEasyTouchView);
         }
     }
 
-    private static void showMultiTaskMainView(){
+    private static void showMultiTaskMainView() {
         WindowManager.LayoutParams layoutParams = multiTaskMainView.getWindowLayoutParams();
-        mWindowManager.addView(multiTaskMainView, layoutParams);
+        try {
+            if (!ViewCompat.isAttachedToWindow(multiTaskMainView)) {
+                mWindowManager.addView(multiTaskMainView, layoutParams);
+            } else {
+                new Handler().post(() -> {
+                    try {
+                        mWindowManager.addView(multiTaskMainView, layoutParams);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Handler().post(() -> {
+                try {
+                    mWindowManager.addView(multiTaskMainView, layoutParams);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            });
+        }
     }
 
-    public static void hideMultiTaskMainView(){
+    public static void hideMultiTaskMainView() {
         mWindowManager.removeView(multiTaskMainView);
     }
 
-    static void openMultiTaskWindow(){
+    static void openMultiTaskWindow() {
         hideEasyTouchView();
         showMultiTaskMainView();
     }

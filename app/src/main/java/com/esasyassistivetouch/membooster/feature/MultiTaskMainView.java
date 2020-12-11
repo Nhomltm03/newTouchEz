@@ -7,7 +7,6 @@ import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PixelFormat;
 import android.media.AudioManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -510,23 +509,36 @@ public class MultiTaskMainView extends RelativeLayout {
 
     @SuppressLint("InflateParams")
     public void initLayoutParams() {
-        mLayoutParams = new WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT,
-                0,
-                0,
-                WindowManager.LayoutParams.TYPE_PHONE,
-                //          0,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-                PixelFormat.TRANSPARENT
-        );
+        mLayoutParams = new WindowManager.LayoutParams();
+        this.mLayoutParams.type = Build.VERSION.SDK_INT > 25 ? getWindowType() : WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+        this.mLayoutParams.screenOrientation = 1;
+
+        this.mLayoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+        this.mLayoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
         mLayoutParams.gravity = Gravity.CENTER;
+
+        if (Build.VERSION.SDK_INT >= 28) {
+            mLayoutParams.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+        }
+
+        this.mLayoutParams.flags = 16777985;
+        this.mLayoutParams.format = -2;
+
         viewMultiTaskView = LayoutInflater.from(mContext).inflate(R.layout.multitask_main_layout, null);
         floatingWindowParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         floatingWindowParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         this.addView(viewMultiTaskView, floatingWindowParams);
 
     }
+
+    private int getWindowType() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return Build.VERSION.SDK_INT >= 29 ? 2037 : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        } else {
+            return WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG;
+        }
+    }
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
