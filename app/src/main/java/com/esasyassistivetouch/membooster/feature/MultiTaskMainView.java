@@ -533,7 +533,7 @@ public class MultiTaskMainView extends RelativeLayout {
 
     private int getWindowType() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return Build.VERSION.SDK_INT >= 29 ? 2037 : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+            return Build.VERSION.SDK_INT >= 29 ? 2038 : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
         } else {
             return WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG;
         }
