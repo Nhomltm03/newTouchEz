@@ -9,19 +9,36 @@ import androidx.core.view.ViewCompat;
 
 import com.esasyassistivetouch.membooster.feature.MultiTaskMainView;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.lang.ref.WeakReference;
+
 public class MyViewHolder {
+
     private static EasyTouchView mEasyTouchView;
+
     @SuppressLint("StaticFieldLeak")
     private static MultiTaskMainView multiTaskMainView;
+
     private static WindowManager mWindowManager;
 
+    private static MyViewHolder instance;
 
-    public MyViewHolder(Context context) {
+    private MyViewHolder(@NotNull Context context) {
         Context applicationContext = context.getApplicationContext();
         mEasyTouchView = new EasyTouchView(applicationContext, null);
         multiTaskMainView = new MultiTaskMainView(applicationContext, null);
         WindowManagerInstance.setApplicationContext(applicationContext);
         mWindowManager = WindowManagerInstance.newInstance();
+    }
+
+    public static MyViewHolder getInstance(Context context) {
+        WeakReference<Context> contextWeakReference = new WeakReference<>(context);
+        context = contextWeakReference.get();
+        if (instance == null) {
+            instance = new MyViewHolder(context);
+        }
+        return instance;
     }
 
     public static void showEasyTouchView() {

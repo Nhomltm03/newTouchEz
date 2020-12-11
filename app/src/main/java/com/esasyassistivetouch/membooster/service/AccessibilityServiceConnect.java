@@ -10,6 +10,7 @@ import com.esasyassistivetouch.membooster.ulti.Constants;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.jetbrains.annotations.NotNull;
 
 @SuppressLint("Registered")
 public class AccessibilityServiceConnect extends AccessibilityService {
@@ -34,7 +35,6 @@ public class AccessibilityServiceConnect extends AccessibilityService {
 
     @Override
     protected void onServiceConnected() {
-        /*Log.e("Connect", "isServiceRunning");*/
         super.onServiceConnected();
         isConnect = true;
     }
@@ -48,26 +48,27 @@ public class AccessibilityServiceConnect extends AccessibilityService {
     }
 
     @Subscribe
-    public void onEventMainThread(MessageEvent event) {
+    public void onEventMainThread(@NotNull MessageEvent event) {
         String msg = event.getMsg();
-        if (msg.equals(Constants.MSG_GLOBAL_ACTION_BACK)) {
-            performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
-        }
-        if (msg.equals(Constants.MSG_GLOBAL_ACTION_RECENT)) {
-            performGlobalAction(AccessibilityService.GLOBAL_ACTION_RECENTS);
-        }
-        if (msg.equals(Constants.MSG_GLOBAL_CONTROL_POWER_SETTING)) {
-            performGlobalAction(AccessibilityService.GLOBAL_ACTION_POWER_DIALOG);
-        }
-        if (msg.equals(Constants.MSG_GLOBAL_SCREEN_SHOT)) {
 
+        if (msg.equals(Constants.MSG_GLOBAL_ACTION_BACK)) {
+            this.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+        }
+
+        if (msg.equals(Constants.MSG_GLOBAL_ACTION_RECENT)) {
+            this.performGlobalAction(AccessibilityService.GLOBAL_ACTION_RECENTS);
+        }
+
+        if (msg.equals(Constants.MSG_GLOBAL_CONTROL_POWER_SETTING)) {
+            this.performGlobalAction(AccessibilityService.GLOBAL_ACTION_POWER_DIALOG);
+        }
+
+        if (msg.equals(Constants.MSG_GLOBAL_SCREEN_SHOT)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                performGlobalAction(AccessibilityService.GLOBAL_ACTION_TAKE_SCREENSHOT);
+                this.performGlobalAction(AccessibilityService.GLOBAL_ACTION_TAKE_SCREENSHOT);
             }
 
         }
-
-
     }
 
 }

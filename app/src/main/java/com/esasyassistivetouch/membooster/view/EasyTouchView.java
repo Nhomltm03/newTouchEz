@@ -20,7 +20,9 @@ import com.esasyassistivetouch.membooster.R;
 
 
 public class EasyTouchView extends LinearLayout {
+
     public static boolean isAlive = false;
+
     private static int screenWidth;
     private static int screenHeight;
     private static int viewWidth;
@@ -30,13 +32,14 @@ public class EasyTouchView extends LinearLayout {
     private static float yDownInScreen;
     private static float xInView;
     private static float yInView;
+
     private WindowManager.LayoutParams mLayoutParams;
 
     public EasyTouchView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         screenWidth = this.getResources().getDisplayMetrics().widthPixels;
         screenHeight = this.getResources().getDisplayMetrics().heightPixels;
-        initLayoutParams();
+        this.initLayoutParams();
         LayoutInflater.from(context).inflate(R.layout.easytouch_view_layout, this);
     }
 
@@ -47,21 +50,23 @@ public class EasyTouchView extends LinearLayout {
     }
 
     @SuppressLint("RtlHardcoded")
-    public void initLayoutParams(){
-        mLayoutParams = new WindowManager.LayoutParams(
+    public void initLayoutParams() {
+        this.mLayoutParams = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT, 0, 0,
                 PixelFormat.TRANSPARENT
         );
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            mLayoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY ;
-        }else {
-            mLayoutParams.type = WindowManager.LayoutParams.TYPE_PHONE ;
+            this.mLayoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        } else {
+            this.mLayoutParams.type = WindowManager.LayoutParams.TYPE_PHONE;
         }
-        mLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-        mLayoutParams.gravity = Gravity.TOP | Gravity.LEFT;
-        mLayoutParams.x = screenWidth;
-        mLayoutParams.y = screenHeight / 2;
+
+        this.mLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+        this.mLayoutParams.gravity = Gravity.TOP | Gravity.LEFT;
+        this.mLayoutParams.x = screenWidth;
+        this.mLayoutParams.y = screenHeight / 2;
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -84,10 +89,9 @@ public class EasyTouchView extends LinearLayout {
                 updateViewPosition();
                 break;
             case MotionEvent.ACTION_UP:
-                if (xInScreen == xDownInScreen && yInScreen == yDownInScreen){
+                if (xInScreen == xDownInScreen && yInScreen == yDownInScreen) {
                     MyViewHolder.openMultiTaskWindow();
-                }
-                else{
+                } else {
                     startViewPositionAnimator();
                 }
                 break;
@@ -100,17 +104,16 @@ public class EasyTouchView extends LinearLayout {
         windowManager.updateViewLayout(this, mLayoutParams);
     }
 
-    public void startViewPositionAnimator(){
+    public void startViewPositionAnimator() {
         ValueAnimator valueAnimator = ObjectAnimator.ofFloat(0, 1f);
         valueAnimator.addUpdateListener(animation -> {
-            float value = (float)animation.getAnimatedValue();
-            if (mLayoutParams.x + viewWidth / 2 <= screenWidth / 2){//向左
-                mLayoutParams.x = (int) ((float)mLayoutParams.x * (1 - value));
+            float value = (float) animation.getAnimatedValue();
+            if (mLayoutParams.x + viewWidth / 2 <= screenWidth / 2) {
+                mLayoutParams.x = (int) ((float) mLayoutParams.x * (1 - value));
+            } else {
+                mLayoutParams.x += (int) ((float) (screenWidth - mLayoutParams.x) * value);
             }
-            else{
-                mLayoutParams.x += (int) ((float)(screenWidth - mLayoutParams.x) * value);
-            }
-            updateViewPosition();
+            this.updateViewPosition();
         });
         valueAnimator.start();
     }
@@ -122,7 +125,7 @@ public class EasyTouchView extends LinearLayout {
     }
 
     public WindowManager.LayoutParams getWindowManagerLayoutParams() {
-        return mLayoutParams;
+        return this.mLayoutParams;
     }
 
 }

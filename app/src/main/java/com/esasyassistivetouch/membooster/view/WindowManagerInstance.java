@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.WindowManager;
 
 class WindowManagerInstance {
+
+
     private static WindowManager windowManager ;
     private static Context applicationContext;
 

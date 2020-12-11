@@ -7,8 +7,8 @@ buildscript {
         maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
-        classpath 'com.google.gms:google-services:4.3.3'
-        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'com.google.gms:google-services:4.3.4'
+        classpath 'com.android.tools.build:gradle:4.1.1'
         classpath 'io.fabric.tools:gradle:1.31.2'
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.1'
 
@@ -21,29 +21,6 @@ allprojects {
         jcenter()
         maven { url "http://dl.bintray.com/lukaville/maven" }
         maven { url "https://jitpack.io" }
-        maven {
-            credentials {
-                username repo_username
-                password repo_password
-            }
-            url "http://maven.segu.vn/artifactory/appstacks"
-
-        }
-        maven {
-            url 'http://maven.segu.vn/artifactory/releases'
-            credentials {
-                username repo_username
-                password repo_password
-            }
-        }
-
-        maven {
-            url 'http://maven.segu.vn/artifactory/snapshots'
-            credentials {
-                username repo_username
-                password repo_password
-            }
-        }
     }
 }
 

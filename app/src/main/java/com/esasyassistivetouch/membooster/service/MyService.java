@@ -33,6 +33,7 @@ import com.esasyassistivetouch.membooster.view.MyViewHolder;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.jetbrains.annotations.NotNull;
 
 import static android.media.AudioManager.RINGER_MODE_NORMAL;
 import static android.media.AudioManager.RINGER_MODE_SILENT;
@@ -40,12 +41,12 @@ import static android.media.AudioManager.RINGER_MODE_VIBRATE;
 
 @SuppressLint("Registered")
 public class MyService extends Service {
-    public static boolean isOnFlashLight = false;
     private static final int REQUEST_CODE = 2019;
     private static final String CHANNEL_ID = "ForegroundServiceChannel";
     private static final String CHANNEL_NAME = "Foreground_Service_Channel";
     private static final int LOCK_ROTATION = 0;
     private static final int ACTIVE_ACCELEROMETER_ROTATION = 1;
+    public static boolean isOnFlashLight = false;
     private MyViewHolder myViewHolder;
 
     public MyService() {
@@ -61,15 +62,19 @@ public class MyService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        createNotification();
+        this.createNotification();
         if (myViewHolder == null) {
-            myViewHolder = new MyViewHolder(this);
+            myViewHolder = MyViewHolder.getInstance(this.getApplicationContext());
         }
+
         MyViewHolder.showEasyTouchView();
-        if (intent.getBooleanExtra(Constants.EXTRA_HIDE_ICON_TOUCH, false)) {
-            MyViewHolder.hideEasyTouchView();
-            EventBus.getDefault().post(new MessageEvent(Constants.MSG_TURN_OFF_SWITCH));
-            stopSelf();
+
+        if (intent != null) {
+            if (intent.getBooleanExtra(Constants.EXTRA_HIDE_ICON_TOUCH, false)) {
+                MyViewHolder.hideEasyTouchView();
+                EventBus.getDefault().post(new MessageEvent(Constants.MSG_TURN_OFF_SWITCH));
+                this.stopSelf();
+            }
         }
         return START_STICKY;
     }
@@ -120,7 +125,7 @@ public class MyService extends Service {
     }
 
     @Subscribe
-    public void onEventMainThread(MessageEvent event) {
+    public void onEventMainThread(@NotNull MessageEvent event) {
         String msg = event.getMsg();
         switch (msg) {
             case Constants.MSG_STOP_SERVICE:
@@ -172,30 +177,33 @@ public class MyService extends Service {
     private void controlRotation(int controlRotation) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (Settings.System.canWrite(this)) {
+
                 if (controlRotation == LOCK_ROTATION) {
-                    Settings.System.putInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, LOCK_ROTATION);
+                    Settings.System.putInt(this.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, LOCK_ROTATION);
                 } else if (controlRotation == ACTIVE_ACCELEROMETER_ROTATION) {
-                    Settings.System.putInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, ACTIVE_ACCELEROMETER_ROTATION);
+                    Settings.System.putInt(this.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, ACTIVE_ACCELEROMETER_ROTATION);
                 }
+
             } else {
                 Intent intentPermission = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
                 intentPermission.setData(Uri.parse("package:" + getPackageName()));
-                startActivity(intentPermission);
+                this.startActivity(intentPermission);
             }
+
         } else {
             if (controlRotation == LOCK_ROTATION) {
-                Settings.System.putInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, LOCK_ROTATION);
+                Settings.System.putInt(this.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, LOCK_ROTATION);
             } else if (controlRotation == ACTIVE_ACCELEROMETER_ROTATION) {
-                Settings.System.putInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, ACTIVE_ACCELEROMETER_ROTATION);
+                Settings.System.putInt(this.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, ACTIVE_ACCELEROMETER_ROTATION);
             }
         }
     }
 
     private void controlActiveFlash(boolean isActive) {
-
-        if (getApplication().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
+        if (this.getApplication().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
             CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
             String cameraId = null;
+
             if (camManager != null) {
                 try {
                     cameraId = camManager.getCameraIdList()[0];
@@ -203,6 +211,7 @@ public class MyService extends Service {
                     e.printStackTrace();
                 }
             }
+
             if (camManager != null) {
                 try {
                     if (cameraId != null) {
@@ -210,7 +219,7 @@ public class MyService extends Service {
                             camManager.setTorchMode(cameraId, isActive);
                             isOnFlashLight = isActive;
                         } else {
-                            Toast.makeText(getApplicationContext(), R.string.all_function_not_work_at_low_api, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this.getApplicationContext(), R.string.all_function_not_work_at_low_api, Toast.LENGTH_SHORT).show();
                             isOnFlashLight = false;
                         }
 
@@ -220,8 +229,7 @@ public class MyService extends Service {
                 }
             }
         } else {
-            Toast.makeText(getApplicationContext(), R.string.all_camera_flash_not_available, Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(this.getApplicationContext(), R.string.all_camera_flash_not_available, Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -240,7 +248,7 @@ public class MyService extends Service {
     private void openAirPlaneSetting() {
         Intent intent = new Intent(android.provider.Settings.ACTION_AIRPLANE_MODE_SETTINGS);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        this.startActivity(intent);
     }
 
     private void controlWifiStage() {
@@ -267,7 +275,6 @@ public class MyService extends Service {
             }
         }
     }
-
 
     private void controlSoundMode(int soundMode) {
         NotificationManager notificationManager = (NotificationManager) this.getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
@@ -297,8 +304,7 @@ public class MyService extends Service {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.setComponent(new ComponentName(Constants.ANDROID_SETTING_PACKAGE, Constants.ANDROID_SETTING_DATA_SUMMARY_ACTIVITY));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-
+        this.startActivity(intent);
     }
 
 }
