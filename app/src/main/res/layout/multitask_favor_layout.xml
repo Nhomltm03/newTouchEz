@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:alpha="0.85">
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/all_float_window_bg"
+        android:columnCount="3"
+        android:rowCount="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UselessParent">
+
+
+        <ImageView
+            android:id="@+id/add_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_add"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/add_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_add"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/add_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_add"
+            tools:ignore="ContentDescription" />
+
+
+        <ImageView
+            android:id="@+id/add_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_add"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/iv_favorite_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/add_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_add"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/add_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_add"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/add_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_add"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/add_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_add"
+            tools:ignore="ContentDescription" />
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

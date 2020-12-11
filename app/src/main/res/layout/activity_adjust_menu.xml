@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AdjustMenuActivity">
+
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/all_bg_with_stroke"
+        tools:ignore="UselessParent">
+
+
+        <ImageView
+            android:id="@+id/iv_pick_setting_function_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_wifi_black_24dp"
+            tools:ignore="ContentDescription"
+            android:tint="@color/all_color_grey" />
+
+        <ImageView
+            android:id="@+id/iv_pick_setting_function_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_bluetooth_black_24dp"
+            tools:ignore="ContentDescription"
+            android:tint="@color/all_color_grey"/>
+
+        <ImageView
+            android:id="@+id/iv_pick_setting_function_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_location_on_black_24dp"
+            tools:ignore="ContentDescription"
+            android:tint="@color/all_color_grey"/>
+
+
+        <ImageView
+            android:id="@+id/iv_pick_setting_function_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_swap_vert_black_24dp"
+            tools:ignore="ContentDescription"
+            android:tint="@color/all_color_grey"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+
+            tools:ignore="ContentDescription"
+            android:tint="@color/all_color_grey"/>
+
+        <ImageView
+            android:id="@+id/iv_pick_setting_function_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_airplanemode_active_black_24dp"
+            tools:ignore="ContentDescription"
+            android:tint="@color/all_color_grey"/>
+
+        <ImageView
+            android:id="@+id/iv_pick_setting_function_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_volume_down_black_24dp"
+            tools:ignore="ContentDescription"
+            android:tint="@color/all_color_grey"/>
+
+        <ImageView
+            android:id="@+id/iv_pick_setting_function_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_volume_up_black_24dp"
+            tools:ignore="ContentDescription"
+            android:tint="@color/all_color_grey"/>
+
+        <ImageView
+            android:id="@+id/iv_pick_setting_function_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/multitask_favor_margin"
+            android:src="@drawable/ic_notifications_active_black_24dp"
+            tools:ignore="ContentDescription"
+            android:tint="@color/all_color_grey"/>
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">easy_touch</string>
+    <string name="sw_open_easy_touch">Open floating window</string>
+    <string name="hint">prompt</string>
+    <string name="hint_content_window">Allow to appear on other apps? Please authorize</string>
+    <string name="toast">easy_touch</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="app_accessibility_description">Accessibility Services</string>
+
+    <string name="notification_action_hide_icon">Hide</string>
+    <string name="bt_adjust_menu_item">Adjust Menu</string>
+
+    <!--popup menu all setting function-->
+    <string name="item_function_control_wifi">Wifi</string>
+    <string name="item_function_control_blue_tooth">Blue Tooth</string>
+    <string name="item_function_control_sound_mode">Sound Mode</string>
+    <string name="item_function_control_volume_up">Volume Up</string>
+    <string name="item_function_control_volume_down">Volume Down</string>
+    <string name="item_function_control_airplane_mode">Airplane Mode</string>
+    <string name="item_function_control_active_location">Location</string>
+    <string name="item_function_control_active_flash">Flash</string>
+    <string name="item_function_control_rotation_mode">Rotation</string>
+    <string name="item_function_visual_power_button">Power</string>
+    <string name="item_function_screen_shot">Screen Shot</string>
+    <string name="item_function_open_data_used_summary">Data Summary</string>
+    <string name="dialog_all_setting_function_title">Choose setting function</string>
+    <string name="item_function_alert_title">Alert:</string>
+    <string name="item_function_alert_message">This function is used at another position, do you want swap?</string>
+    <string name="all_dialog_yes">yes</string>
+    <string name="all_dialog_no">no</string>
+    <string name="item_no_function">None</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_camera_flash_not_available">Oops!Flash not available in this device…</string>
+    <string name="all_function_not_work_at_low_api">Sorry this function not work on at this Android version</string>
+    <!--    <string name="item_function_control_wifi">Wifi</string>
+        <string name="pm_control_wifi">Wifi</string>
+        <string name="pm_control_wifi">Wifi</string>-->
+
+</resources>
+

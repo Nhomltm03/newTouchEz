@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+   >
+<!--    <item
+        android:id="@+id/pm_control_wifi"
+        android:icon="@drawable/ic_wifi_black_24dp"
+        android:title="@string/pm_control_wifi" />
+    <item
+        android:icon="@drawable/ic_bluetooth_black_24dp"
+        android:id="@+id/pm_control_blue_tooth"
+        android:title="@string/pm_control_blue_tooth" />
+    <item
+        android:icon="@drawable/ic_location_on_black_24dp"
+        android:id="@+id/pm_control_active_location"
+        android:title="@string/pm_control_active_location" />
+    <item
+        android:icon="@drawable/ic_swap_vert_black_24dp"
+        android:id="@+id/pm_open_data_used_summary"
+        android:title="@string/pm_open_data_used_summary" />
+
+    <item
+        android:icon="@drawable/ic_airplanemode_active_black_24dp"
+        android:id="@+id/pm_control_active_airplane_mode"
+        android:title="@string/pm_control_airplane_mode" />
+
+    <item
+        android:icon="@drawable/ic_volume_down_black_24dp"
+        android:id="@+id/pm_control_volume_down"
+        android:title="@string/pm_control_volume_down" />
+    <item
+        android:icon="@drawable/ic_volume_up_black_24dp"
+        android:id="@+id/pm_control_volume_up"
+        android:title="@string/pm_control_volume_up" />
+    <item
+        android:icon="@drawable/ic_notifications_active_black_24dp"
+        android:id="@+id/pm_control_sound_mode"
+        android:title="@string/pm_control_sound_mode" />-->
+</menu>
