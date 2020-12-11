@@ -58,7 +58,7 @@ public class MultiTaskMainView extends RelativeLayout {
     private static int functionType6;
     private static int functionType7;
     private static int functionType8;
-    private Context mContext;
+    private final Context mContext;
     private WindowManager.LayoutParams mLayoutParams;
     private View viewMultiTaskView;
     private RelativeLayout.LayoutParams floatingWindowParams;
@@ -70,6 +70,40 @@ public class MultiTaskMainView extends RelativeLayout {
     private ImageView ivSettingFunctionItem6;
     private ImageView ivSettingFunctionItem7;
     private ImageView ivSettingFunctionItem8;
+
+    private OnClickListener settingFunctionOnClickListener = view -> {
+        switch (view.getId()) {
+            case R.id.iv_setting_function_1:
+                handleOnClickFunctionItem(ivSettingFunctionItem1, functionType1);
+                break;
+            case R.id.iv_setting_function_2:
+                handleOnClickFunctionItem(ivSettingFunctionItem2, functionType2);
+                break;
+            case R.id.iv_setting_function_3:
+                handleOnClickFunctionItem(ivSettingFunctionItem3, functionType3);
+                break;
+            case R.id.iv_setting_function_4:
+                handleOnClickFunctionItem(ivSettingFunctionItem4, functionType4);
+                break;
+            case R.id.iv_setting_function_5:
+                handleOnClickFunctionItem(ivSettingFunctionItem5, functionType5);
+                break;
+            case R.id.iv_setting_function_6:
+                handleOnClickFunctionItem(ivSettingFunctionItem6, functionType6);
+                break;
+            case R.id.iv_setting_function_7:
+                handleOnClickFunctionItem(ivSettingFunctionItem7, functionType7);
+                break;
+            case R.id.iv_setting_function_8:
+                handleOnClickFunctionItem(ivSettingFunctionItem8, functionType8);
+                break;
+            case R.id.iv_setting_back:
+                replaceToMainView();
+                break;
+            default:
+                break;
+        }
+    };
     private OnClickListener onClickListener = new OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -116,39 +150,6 @@ public class MultiTaskMainView extends RelativeLayout {
                 default:
                     break;
             }
-        }
-    };
-    private OnClickListener settingFunctionOnClickListener = view -> {
-        switch (view.getId()) {
-            case R.id.iv_setting_function_1:
-                handleOnClickFunctionItem(ivSettingFunctionItem1, functionType1);
-                break;
-            case R.id.iv_setting_function_2:
-                handleOnClickFunctionItem(ivSettingFunctionItem2, functionType2);
-                break;
-            case R.id.iv_setting_function_3:
-                handleOnClickFunctionItem(ivSettingFunctionItem3, functionType3);
-                break;
-            case R.id.iv_setting_function_4:
-                handleOnClickFunctionItem(ivSettingFunctionItem4, functionType4);
-                break;
-            case R.id.iv_setting_function_5:
-                handleOnClickFunctionItem(ivSettingFunctionItem5, functionType5);
-                break;
-            case R.id.iv_setting_function_6:
-                handleOnClickFunctionItem(ivSettingFunctionItem6, functionType6);
-                break;
-            case R.id.iv_setting_function_7:
-                handleOnClickFunctionItem(ivSettingFunctionItem7, functionType7);
-                break;
-            case R.id.iv_setting_function_8:
-                handleOnClickFunctionItem(ivSettingFunctionItem8, functionType8);
-                break;
-            case R.id.iv_setting_back:
-                replaceToMainView();
-                break;
-            default:
-                break;
         }
     };
 
